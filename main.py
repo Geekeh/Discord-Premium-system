@@ -46,7 +46,7 @@ async def gen(ctx, amount, time):
          letters = string.ascii_letters
          key = "discord-" + ''.join(random.choice(letters) for i in range(6))
          em = discord.Embed(color=0xff0000)
-         em.add_field(name="Key fag", value=key)
+         em.add_field(name="Key", value=key)
          await ctx.send(embed=em)
    
    # -- collection.delete_many({})
