@@ -1,5 +1,7 @@
 ## Premium System Discord Bot with redeeming feature
 
+![image](https://user-images.githubusercontent.com/98252854/191440703-edbd133c-03c4-4b41-9cde-d6434a819b48.png)
+
 ## 📚 Information 📚 
 #### A simple discord bot that has a generate and redeem commands. When a user redeems the code it gives them by defualt buyer role you can change that in the code. More features coming soon!
 
