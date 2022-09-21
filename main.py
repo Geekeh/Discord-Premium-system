@@ -11,7 +11,7 @@ from pymongo import MongoClient
 
 bot = commands.Bot(command_prefix=".", intents=discord.Intents.all())
 
-mongo_db_link = 'mongodb+srv://accessname:geek123@cluster0.tncgxrw.mongodb.net/?retryWrites=true&w=majority'
+mongo_db_link = 'replace this with our mongodb access link'
 
 @bot.command()
 async def gen(ctx, amount, time):
@@ -108,5 +108,5 @@ async def redeem(ctx, key):
       pass
 
 
-f = open("auth.txt", "r")
-bot.run(f.read())
+
+bot.run("Put your dsicord bot token here")
