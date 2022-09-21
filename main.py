@@ -1,0 +1,112 @@
+from discord.ext import commands
+import random
+import string
+from datetime import datetime
+from datetime import timedelta
+import datetime
+import discord
+import uuid
+from pymongo import MongoClient
+
+
+bot = commands.Bot(command_prefix=".", intents=discord.Intents.all())
+
+mongo_db_link = 'mongodb+srv://accessname:geek123@cluster0.tncgxrw.mongodb.net/?retryWrites=true&w=majority'
+
+@bot.command()
+async def gen(ctx, amount, time):
+   key_int = int(amount)
+   amount = key_int - 1
+   key_amt = range(int(amount))
+   time = int(time)
+
+   # -- Connect to database n shit
+   mongo_url = mongo_db_link
+   cluster = MongoClient(mongo_url)
+   db = cluster["discord"]
+   collection = db["discord"]
+
+   # -- Expiration
+   now = datetime.datetime.today()
+   future = now + timedelta(days=time)
+   expires = future.strftime("%m-%d")
+
+   # -- Key
+   key_yes = 'discord-fkEPsG'
+   if key_int == 1:
+      letters = string.ascii_letters
+      key = "discord-" + ''.join(random.choice(letters) for i in range(6))
+   elif key_int < 1:
+      em = discord.Embed(color=0xff0000)
+      em.add_field(name="Invalid number", value="Key amount needs to be higher than 0")
+      await ctx.send(embed=em)
+      return 0
+   elif key_int > 1:
+      for i in key_amt:
+         letters = string.ascii_letters
+         key = "discord-" + ''.join(random.choice(letters) for i in range(6))
+         em = discord.Embed(color=0xff0000)
+         em.add_field(name="Key fag", value=key)
+         await ctx.send(embed=em)
+   
+   # -- collection.delete_many({})
+
+   # -- Send all info to discord and database
+   message = await ctx.send("Connecting...")
+   try:
+      if key_int == 1:
+         key_yes = key
+      else:
+         key_yes = 'discord-fkEPsG'
+         pass
+      post = {"key": key, "expiration": expires, "user": "Empty", "used": 'unused'}
+      collection.insert_one(post)
+      em = discord.Embed(color=0x00ff00)
+      em.add_field(name="\n" + "discord", value="**Key generated!**" + "\n" +
+         "key: " + key + "\n" + "Expires: " + str(time) + " days" +  "\n" + "\n"
+         + "**Redeem Key**" + "\n" + f"Redeem the key by typing ```.redeem {key}```")
+      await message.delete()
+      await ctx.send(embed=em)
+   except:
+      em = discord.Embed(color=0xff0000)
+      em.add_field(name="Api did not respond", value="Could not generate key")
+      await ctx.send(content="", embed=em)
+
+@bot.command()
+async def redeem(ctx, key):
+   mongo_url = mongo_db_link
+   cluster = MongoClient(mongo_url)
+   db = cluster["discord"]
+   collection = db["discord"]
+   try:
+      results = collection.find({"key": key})
+      for results in results:
+         if results['key'] == str(key):
+            collection.update_one({"key": key}, {"$set":{"user": ctx.author.id}})
+            expiration = str(results['expiration'])
+            used = str(results['used'])
+            if used == 'used':
+               em = discord.Embed(color=0xff0000)
+               em.add_field(name="Key already used", value="the key you entered has already been used")
+               await ctx.send(embed=em)
+            elif used == 'unused':
+               role = 'Buyer'
+               user = ctx.message.author
+               await user.add_roles(discord.utils.get(user.guild.roles, name=role))
+               em = discord.Embed(title="discord", color=0x00ff00)
+               em.add_field(name="Redeemed!", value="You have successfully redeemed the key"
+               + "\n" + "\n" + f"Key will expire on {expiration}")
+               await ctx.send(embed=em)
+               collection.update_one({"key": key}, {"$set":{"used": 'used'}})
+               return
+               
+         else:
+            em = discord.Embed(title="discord", color=0xff0000)
+            em.add_field(name="Invalid key", value="The key you entered was invalid.")
+            await ctx.send(embed=em)
+   except:
+      pass
+
+
+f = open("auth.txt", "r")
+bot.run(f.read())
