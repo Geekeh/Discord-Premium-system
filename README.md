@@ -7,7 +7,7 @@
 
 ### 📝 Coming Soon...📝
 #
-#### Expiration dates, will remove the users role at the end of the set time, will send a dm to the user alerting them it is up with the provided link to extend their time.
+#### Timer for expiration date starts when key is redeemed currently starts when key is generated will be fixed asap
 #### That's about all also Pull requests are welcome!
 
 ## ⚙️ How to use ⚙️
