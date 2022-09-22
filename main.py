@@ -11,9 +11,9 @@ from pymongo import MongoClient
 bot = commands.Bot(command_prefix=".", intents=discord.Intents.all())
 
 #all your mongo db information
-#mongo_db_link = 'Put your mongo db connection string'
-#databases_name = 'Put your database name here' # -- Example https://ibb.co/1fpQktR
-#collection_name = "Put your database collection name here" # -- Example https://ibb.co/Fwwvbxw
+mongo_db_link = 'Put your mongo db connection string'
+databases_name = 'Put your database name here' # -- Example https://ibb.co/1fpQktR
+collection_name = "Put your database collection name here" # -- Example https://ibb.co/Fwwvbxw
 
 #key information
 role_name = "Buyer"
