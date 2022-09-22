@@ -14,7 +14,9 @@
 > ##### Install [python](https://www.python.org/) and add to path when installing.
 > ##### Create a [mongo](https://www.mongodb.com/) database and put your access link where it says to in the file.
 > ##### Put your discord bot token at the bottom and it says to.
-> ##### Run the bot and do .gen (amount_of_keys) (duration_of_key).
+> ##### Run the bot and then run role.py next in discord type .enable to start the bot.
+> ##### To gen new keys type .gen (amountofkeys) (time to last in days)
+> ##### Example ![image](https://user-images.githubusercontent.com/98252854/191679887-53a3b3b4-8e2f-4c26-96cd-6eec074585ad.png)
 #
 #Don't ask for help on discord i prob wont respond, unless its a recommendation or feature to add.
 #### [License](https://www.gnu.org/licenses/gpl-3.0.en.html)
