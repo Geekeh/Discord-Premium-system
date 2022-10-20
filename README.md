@@ -21,4 +21,4 @@
 ### Don't ask for help on discord i prob wont respond, unless its a recommendation or feature to add.
 #### [License](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-discord.gg/juicy
+https://discord.gg/juicy
