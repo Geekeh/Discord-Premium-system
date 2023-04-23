@@ -44,4 +44,4 @@ async def enable(ctx):
                         pass
 
 
-bot.run("replace with your discord bot token)
+bot.run("replace with your discord bot token")
